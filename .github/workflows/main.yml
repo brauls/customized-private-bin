@@ -10,9 +10,10 @@ jobs:
       env:
         CERT_PATH: /usr/local/psa/var/modules/letsencrypt/etc/archive/zelos-learning.de/cert1.pem
         PRIV_KEY_PATH: /usr/local/psa/var/modules/letsencrypt/etc/archive/zelos-learning.de/privkey1.pem
+        FULLCHAIN_PATH: /usr/local/psa/var/modules/letsencrypt/etc/archive/zelos-learning.de/fullchain1.pem
       with:
         name: brauls/customized-private-bin/private-bin-img
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        buildargs: CERT_PATH,PRIV_KEY_PATH
+        buildargs: CERT_PATH,PRIV_KEY_PATH,FULLCHAIN_PATH
