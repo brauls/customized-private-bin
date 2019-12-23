@@ -1,7 +1,14 @@
 FROM privatebin/nginx-fpm-alpine:1.3.1
 
-COPY conf.php /srv/cfg/conf.php
+ARG CERT_PATH
+ARG PRIV_KEY_PATH
 
-EXPOSE 80 8080
+COPY conf.php /srv/cfg/conf.php
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
+
+VOLUME ${CERT_PATH} /etc/nginx/certs/cert.pem
+VOLUME ${PRIV_KEY_PATH} /etc/nginx/certs/privkey.pem
+
+EXPOSE 80 443
 
 ENTRYPOINT ["/init"]
